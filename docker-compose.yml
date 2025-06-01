@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:16
+    container_name: my-postgres-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mydatabase_postgres
+      POSTGRES_USER: myuser_postgres
+      POSTGRES_PASSWORD: mysecretpassword_postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mysql_db:
+    image: mysql:8.0
+    container_name: my-mysql-db
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecretpassword_mysql_root
+      MYSQL_DATABASE: mydatabase_mysql
+      MYSQL_USER: myuser_mysql
+      MYSQL_PASSWORD: mysecretpassword_mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  postgres_data:
+  mysql_data:
